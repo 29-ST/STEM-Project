@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sion Tsuji | Forest City International School</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    
+    <style>
+        :root {
+            --bg: #050a0a;
+            --primary: #20FFB0;
+            --secondary: #00d4ff;
+            --text: #f0f0f0;
+            --glass: rgba(255, 255, 255, 0.05);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Live Background Canvas */
+        #canvas-holder {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
+
+        /* Typography */
+        h1, h2, h3 { font-family: 'Syne', sans-serif; text-transform: uppercase; }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .hero h1 {
+            font-size: clamp(4rem, 12vw, 10rem);
+            line-height: 0.9;
+            background: linear-gradient(to right, #fff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: var(--primary);
+            letter-spacing: 5px;
+        }
+
+        /* Bento Grid Layout */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: minmax(200px, auto);
+            gap: 20px;
+            margin-bottom: 100px;
+        }
+
+        .card {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 2rem;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .large { grid-column: span 2; grid-row: span 2; }
+        .wide { grid-column: span 2; }
+        .tall { grid-row: span 2; }
+
+        /* Content Blocks */
+        .tag {
+            display: inline-block;
+            padding: 5px 12px;
+            background: rgba(32, 255, 176, 0.1);
+            color: var(--primary);
+            border-radius: 50px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary);
+            display: block;
+        }
+
+        footer {
+            padding: 100px 0 50px;
+            text-align: center;
+            opacity: 0.5;
+        }
+
+        /* Animations */
+        .reveal { opacity: 0; transform: translateY(30px); }
+    </style>
+</head>
+<body>
+
+    <div id="canvas-holder"></div>
+
+    <div class="container">
+        <section class="hero">
+            <p class="reveal">DESIGNED FOR THE FUTURE</p>
+            <h1 class="reveal">SION<br>TSUJI</h1>
+            <p class="reveal">FOREST CITY INTERNATIONAL SCHOOL</p>
+        </section>
+
+        <section class="bento-grid">
+            
+            <div class="card large reveal">
+                <span class="tag">WHO IS HE?</span>
+                <h2>The Visionary Student</h2>
+                <p style="margin-top: 1rem;">Sion Tsuji is a dedicated learner at Forest City International School, blending academic excellence with a passion for future-tech. Known for a curious mind and a drive to solve global challenges through innovation.</p>
+            </div>
+
+            <div class="card reveal">
+                <span class="stat-number">4.0</span>
+                <p>GPA Focus</p>
+            </div>
+
+            <div class="card reveal">
+                <span class="stat-number">100%</span>
+                <p>Dedication</p>
+            </div>
+
+            <div class="card wide reveal">
+                <span class="tag">EDUCATION</span>
+                <h3>Forest City International School</h3>
+                <p>Immersed in a world-class environment in Johor, Malaysia, focusing on holistic growth and sustainable urban living.</p>
+            </div>
+
+            <div class="card tall reveal">
+                <span class="tag">SKILLS</span>
+                <ul style="list-style: none; margin-top: 1rem;">
+                    <li style="margin-bottom: 0.5rem;">⚡ Logic & Math</li>
+                    <li style="margin-bottom: 0.5rem;">🌍 Global Citizenship</li>
+                    <li style="margin-bottom: 0.5rem;">🎨 Creative Design</li>
+                    <li style="margin-bottom: 0.5rem;">🤖 Robotics</li>
+                </ul>
+            </div>
+
+            <div class="card reveal">
+                <p><i>"The best way to predict the future is to create it."</i></p>
+            </div>
+
+            <div class="card wide reveal">
+                <span class="tag">CURRENT PROJECT</span>
+                <h3>Eco-City Analysis</h3>
+                <p>Researching the impact of vertical forests on urban temperatures.</p>
+            </div>
+
+        </section>
+
+        <footer>
+            <p>&copy; 2026 SION TSUJI. ALL RIGHTS RESERVED.</p>
+        </footer>
+    </div>
+
+    <script>
+        // --- LIVE VISUALS (p5.js) ---
+        let particles = [];
+
+        function setup() {
+            let canvas = createCanvas(windowWidth, windowHeight);
+            canvas.parent('canvas-holder');
+            for (let i = 0; i < 100; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function draw() {
+            clear();
+            background(5, 10, 10, 150);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+        }
+
+        class Particle {
+            constructor() {
+                this.pos = createVector(random(width), random(height));
+                this.vel = createVector(random(-0.5, 0.5), random(-0.5, 0.5));
+                this.size = random(2, 5);
+            }
+            update() {
+                this.pos.add(this.vel);
+                if (this.pos.x > width) this.pos.x = 0;
+                if (this.pos.x < 0) this.pos.x = width;
+                if (this.pos.y > height) this.pos.y = 0;
+                if (this.pos.y < 0) this.pos.y = height;
+
+                // Mouse interaction
+                let mouseDist = dist(mouseX, mouseY, this.pos.x, this.pos.y);
+                if (mouseDist < 150) {
+                    let force = createVector(this.pos.x - mouseX, this.pos.y - mouseY);
+                    force.setMag(0.1);
+                    this.pos.add(force);
+                }
+            }
+            draw() {
+                noStroke();
+                fill(32, 255, 176, 150);
+                circle(this.pos.x, this.pos.y, this.size);
+            }
+        }
+
+        function windowResized() {
+            resizeCanvas(windowWidth, windowHeight);
+        }
+
+        // --- ENTRANCE ANIMATIONS (GSAP) ---
+        gsap.to(".reveal", {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            stagger: 0.2,
+            ease: "power4.out",
+            delay: 0.5
+        });
+    </script>
+</body>
+</html>
