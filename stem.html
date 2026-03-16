@@ -54,13 +54,16 @@
         .hero {
             height: 100vh;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .hero-text {
+            flex: 1;
         }
 
         .hero h1 {
-            font-size: clamp(4rem, 12vw, 10rem);
+            font-size: clamp(4rem, 10vw, 8rem);
             line-height: 0.9;
             background: linear-gradient(to right, #fff, var(--primary));
             -webkit-background-clip: text;
@@ -72,6 +75,30 @@
             font-size: 1.5rem;
             color: var(--primary);
             letter-spacing: 5px;
+        }
+
+        /* Decorative Image Styling */
+        .hero-image {
+            width: 400px;
+            height: 500px;
+            position: relative;
+            border-radius: 30px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 0 50px rgba(32, 255, 176, 0.2);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(30%) contrast(1.1);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
         }
 
         /* Bento Grid Layout */
@@ -135,9 +162,14 @@
 
     <div class="container">
         <section class="hero">
-            <p class="reveal">DESIGNED FOR THE FUTURE</p>
-            <h1 class="reveal">SION<br>TSUJI</h1>
-            <p class="reveal">FOREST CITY INTERNATIONAL SCHOOL</p>
+            <div class="hero-text">
+                <p class="reveal">DESIGNED FOR THE FUTURE</p>
+                <h1 class="reveal">SION<br>TSUJI</h1>
+                <p class="reveal">FOREST CITY INTERNATIONAL SCHOOL</p>
+            </div>
+            <div class="hero-image reveal">
+                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1000&auto=format&fit=crop" alt="Portrait">
+            </div>
         </section>
 
         <section class="bento-grid">
